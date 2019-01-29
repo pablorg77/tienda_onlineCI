@@ -17,7 +17,7 @@
 
 <div class="sidenavbar">
 <?php foreach($cats as $c): ?>
-  <a href="../tienda_onlineCI/?categ=<?=$c['nombre']?>"> <?=$c['nombre']?> </a>
+  <a href="<?=base_url();?>?categ=<?=$c['idcategoria']?>&pag=1"> <?=$c['nombre']?> </a>
 <?php endforeach; ?>
 </div>
 
@@ -59,19 +59,19 @@
 
       <div class="row">
 
-      <?php for($i=0;$i<count($destac);$i++): ?>
+      <?php foreach($destac as $dest): ?>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="<?=base_url();?>/assets/images/<?=$destac[$i]['imagen']?>" alt="avast"></a>
+            <a href="#"><img class="card-img-top" src="<?=base_url();?>/assets/images/<?=$dest['imagen']?>" alt="imagen_producto"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"><?=$destac[$i]['nombre'];?></a>
+                <a href="#"><?=$dest['nombre'];?></a>
               </h4>
-              <p class="card-text"><?=$destac[$i]['descripcion'];?></p>
+              <p class="card-text"><?=$dest['descripcion'];?></p>
             </div>
           </div>
         </div>
-      <?php endfor;?>    
+      <?php endforeach;?>    
       </div>
       <!-- /.row -->
 

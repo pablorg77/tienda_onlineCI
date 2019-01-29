@@ -11,43 +11,14 @@ class tiendaDB extends CI_Model{
         return $query->result_array();
     }
 
-    function getAntivirusDestacados(){
+    function getDestacados($cat){
 
-        $query=$this->db->select('nombre, precio, imagen, descripcion')
+        $query=$this->db->select('nombre, precio, imagen, descripcion, cantidad_dispo')
         ->from('productos')
-        ->where('destacado=1 AND categorias_idcategoria=1')
+        ->where('destacado=1 AND categorias_idcategoria='.$cat)
         ->get();
         return $query->result_array(); 
     }
-
-    function getCleanersDestacados(){
-
-        $query=$this->db->select('nombre, precio, imagen, descripcion')
-        ->from('productos')
-        ->where('destacado=1 AND categorias_idcategoria=2')
-        ->get();
-        return $query->result_array(); 
-    }
-
-    function getJuegosDestacados(){
-
-        $query=$this->db->select('nombre, precio, imagen, descripcion')
-        ->from('productos')
-        ->where('destacado=1 AND categorias_idcategoria=3')
-        ->get();
-        return $query->result_array(); 
-    }
-
-
-    function getCursosDestacados(){
-
-        $query=$this->db->select('nombre, precio, imagen, descripcion')
-        ->from('productos')
-        ->where('destacado=1 AND categorias_idcategoria=4')
-        ->get();
-        return $query->result_array(); 
-    }
-
 
 
    
