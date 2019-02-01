@@ -6,21 +6,22 @@ class Destacados extends CI_Controller {
 	public function index()
 	{
 
-		$this->load->model('tiendaDB');
-		$categorias=$this->tiendaDB->getCategorias();
+		$this->load->model('indexModel');
+		$categorias=$this->indexModel->getCategorias();
 		
 		$destacados=$this->chooseCategoria();
+		$this->load->view('header');
 		$this->load->view('principal',['cats'=>$categorias,'destac'=>$destacados]);
+		$this->load->view('footer');
 	}
 
 	private function chooseCategoria(){
 
-		//$this->load->model('tiendaDB');
 		if(isset($_GET['categ']))
 		$categoria=$_GET['categ'];
 		else
 			$categoria= 1; //Muestro los antivirus por defecto;
 
-		return $this->tiendaDB->getDestacados($categoria);
+		return $this->indexModel->getDestacados($categoria);
 	}
 }
