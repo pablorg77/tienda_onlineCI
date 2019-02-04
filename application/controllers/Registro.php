@@ -6,6 +6,7 @@ class Registro extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('register');
+        $this->load->model('filtradoregistro');
     }
     
     public function index()
@@ -13,6 +14,18 @@ class Registro extends CI_Controller {
         $provincias=$this->register->getProvincias();
 
         if($_POST){
+            $datos={
+                'usuario'=>$_POST['user'],
+                'pass'=>$_POST['pass'],
+                'correo'=>$_POST['correo'],
+                'nombre'=>$_POST['nombre'],
+                'apellidos'=>$_POST['apellidos'],
+                'dni'=>$_POST['dni'],
+                'direccion'=>$_POST['direccion'],
+                'codpostal'=>$_POST['codpostal'],
+            };
+
+            $errores=$this->filtradoRegistro->filtradoRegistro($datos);
 
         }
 
