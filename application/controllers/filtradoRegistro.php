@@ -31,8 +31,8 @@ function filtradoRegistro($datos){
         $arrayErrores['direccion'] = "Introduzca una dirección válida";
     }
 
-    if (! preg_match("/^[0-9]{5}$/", $datos['codigo_postal'])) {
-        $arrayErrores['codigo_postal'] = "Introduzca un código postal válido";
+    if (! preg_match("/^[0-9]{5}$/", $datos['codpostal'])) {
+        $arrayErrores['codpostal'] = "Introduzca un código postal válido";
     }
 
     
@@ -42,12 +42,12 @@ function filtradoRegistro($datos){
 function validaDNI($dni){
 
     $letra = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
-    $num=$dni % 23
+    $num=intval(substr($dni,0,-1)) % 23;
     $letraDNI=$letra[$num];
 
-    if (! preg_match("/^[0-9]{8}/",$dni) && substr($dni,-1)!=$letraDNI)
-        return false;
-    else    return true;
+    if (!(preg_match("/^[0-9]{8}/",$dni) && substr($dni,-1)===$letraDNI) )
+        return true;
+    else    return false;
   }
   
   
