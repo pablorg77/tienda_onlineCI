@@ -5,23 +5,22 @@ class loginUser extends CI_Model{
     function login($user, $pass){
         
         $query=$this->db
-            ->select('usuario, password')
+            ->select('usuario, pass, correo, nombre, apellidos')
             ->from('usuarios')
-            ->where('usuario="'.$user.'" AND password="'.$pass.'"')
+            ->where('usuario="'.$user.'" AND pass="'.$pass.'"')
             ->get();
         if($query->result()!='')
-            return true;
+            return $query->result_array();
         else return false;
     }
 
-    function getUsuario($id){
+    /*function getUsuarios(){
         $query=$this->db
-        ->select('*')
+        ->select('usuario, pass, correo, nombre, apellidos')
         ->from('usuarios')
-        ->where('idusuario='.$id)
         ->get();
         return $query->result_array();
-    }
+    }*/
 
 
 }

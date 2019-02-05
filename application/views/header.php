@@ -17,7 +17,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Tienda online</a>
+        <a class="navbar-brand" href="<?=base_url();?>">Tienda online</a>
+        <?php if ($this->session->userdata()!='')
+              echo "<div style='float:right;color:white'>Bienvenido: " . $this->session->nombre .", ". $this->session->apellidos.
+               "</div>";?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +30,8 @@
               <a class="nav-link" href="<?=base_url();?>">Página Principal</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=site_url('login');?>">Iniciar sesión</a>
+              <?php if ($this->session->userdata()=='')
+                  echo "<a class='nav-link' href='".site_url('login')."'>Iniciar sesión</a>";?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=site_url('registro');?>">Registrarse</a>
@@ -35,6 +39,10 @@
             <li class="nav-item">
               <a class="nav-link" href="#"><img src="<?=base_url();?>/assets/images/carrito.png" 
               alt="carrito_compra" style="width:30px; height:30px;"></a>
+            </li>
+            <li>
+              <?php if ($this->session->userdata()!='')
+                  echo "<a class='nav-link' href='".site_url('login/logout')."'>Cerrar sesión</a>";?>
             </li>
           </ul>
         </div>
