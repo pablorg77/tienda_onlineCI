@@ -8,24 +8,17 @@ class Registro extends CI_Controller {
         $this->load->model('register');
         $this->load->helper('form');
         include 'filtradoRegistro.php';
+        include 'helper.php';
     }
     
     public function index()
 	{
-        $this->load->view('header');
+        //$this->load->view('header');
         $provincias=$this->register->getProvincias();
-
-        function VP($nombreCampo, $valorPorDefecto = '')
-        {
-            if (isset($_POST[$nombreCampo]))
-                return $_POST[$nombreCampo];
-            else
-                return $valorPorDefecto;
-        }
-
+        $vistaRegistro=$this->load->view('registro',['provincias'=>$provincias]);
 
         if($_POST){
-            
+    
             $datos=[
                 'usuario'=>$_POST['user'],
                 'pass'=>$_POST['pass'],
@@ -41,24 +34,24 @@ class Registro extends CI_Controller {
             $errores=filtradoRegistro($datos);
             if ($errores) {
                 foreach ($errores as $error) {
-                    if ($error != '')
+                    if ($error != '')   //Podría colocar cada error en un div en rojo debajo de cada campo.
                         echo "<p style='color:red'>" . $error ."</p>";
                 }
-                $this->load->view('registro',['provincias'=>$provincias]);
+                $this->load->view('plantilla',['view'=>$vistaRegistro]);
             }
             else{
                 $this->register->setRegistro($datos);
-                $this->load->view('correct');
+                $this->load->view('plantilla',['view'=>$this->load->view('correct')]);
             }
            
         }
 
 		else{
         
-        $this->load->view('registro',['provincias'=>$provincias]);
+            $this->load->view('plantilla',['view'=>$vistaRegistro]);
         
         }
-        $this->load->view('footer');
+        //$this->load->view('footer');
     }
     
     

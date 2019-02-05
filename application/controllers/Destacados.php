@@ -8,11 +8,10 @@ class Destacados extends CI_Controller {
 
 		$this->load->model('indexModel');
 		$categorias=$this->indexModel->getCategorias();
-		
 		$destacados=$this->chooseCategoria();
-		$this->load->view('header');
-		$this->load->view('principal',['cats'=>$categorias,'destac'=>$destacados]);
-		$this->load->view('footer');
+		
+		$principal=$this->load->view('principal',['destacados'=>$destacados,'cats'=>$categorias]);
+		$this->load->view('plantilla',['view'=>$principal]);
 	}
 
 	private function chooseCategoria(){

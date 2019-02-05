@@ -11,16 +11,19 @@
 							<div class="col-lg-12">
 								<form id="login" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
+										<input type="text" name="username" id="username" tabindex="1" 
+										class="form-control" placeholder="Usuario" value="<?=VP('username')?>">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+										<input type="password" name="password" id="password" tabindex="2" 
+										class="form-control" placeholder="Contraseña">
 									</div>
 									<br><br><br>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="submit" id="submit" tabindex="4" class="form-control btn btn-login" value="Iniciar sesión">
+												<input type="submit" name="submit" id="submit" tabindex="4" 
+												class="form-control btn btn-login" value="Iniciar sesión">
 											</div>
 										</div>
 									</div>
