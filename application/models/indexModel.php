@@ -14,7 +14,7 @@ class indexModel extends CI_Model{
     function getDestacados($cat){
         $fecha=date('Y-m-d');
         $query=$this->db
-            ->select('idproducto,nombre, precio, imagen, descripcion, cantidad_dispo, fechaInicio, fechaFin')
+            ->select('idproducto,nombre, precio, imagen, descripcion')
             ->from('productos')
             ->where('("'.$fecha.'" BETWEEN fechaInicio AND fechaFin OR destacado=1) AND categorias_idcategoria='.$cat)
             ->get();

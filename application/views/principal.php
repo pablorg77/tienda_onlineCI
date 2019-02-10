@@ -17,7 +17,8 @@
       <?php foreach($destacados as $dest): ?>
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="<?=base_url();?>/assets/images/<?=$dest['imagen']?>" alt="imagen_producto"></a>
+            <a href="<?=site_url('producto')?>?prod=<?=$dest['idproducto']?>">
+            <img class="card-img-top" src="<?=base_url();?>/assets/images/<?=$dest['imagen']?>" alt="imagen_producto"></a>
             <div class="card-body">
               <h4 class="card-title">
                 <a href="#"><?=$dest['nombre'];?></a>
@@ -27,9 +28,15 @@
           </div>
         </div>
       <?php endforeach;?>    
+      
       </div>
       <!-- /.row -->
 
       <!-- Paginación! -->
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+      <?= $this->pagination->create_links(); ?>
+        </li>
+      </ul>
 
     </div>

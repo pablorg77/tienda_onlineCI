@@ -14,13 +14,16 @@
 
 </head>
 <body>
+<?php 
+  $ci=get_instance();
+  $ci->load->model('loginUser');
+?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="<?=base_url();?>">Tienda online</a>
-        <?php if ($this->session->userdata('usuario')!='')
-              echo "<div style='float:right;color:white'>Bienvenido: " . $this->session->userdata('nombre') .", ". $this->session->apellidos.
-               "</div>";?>
+        <?php if ($ci->loginUser->isLogged())
+              $ci->loginUser->getUsername();?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,18 +33,18 @@
               <a class="nav-link" href="<?=base_url();?>">Página Principal</a>
             </li>
             <li class="nav-item">
-              <?php if ($this->session->userdata('usuario')=='')
+              <?php if (!$ci->loginUser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login')."'>Iniciar sesión</a>";?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=site_url('registro');?>">Registrarse</a>
+              <a class="nav-link" href="<?=site_url('registro/getForm');?>">Registrarse</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><img src="<?=base_url();?>/assets/images/carrito.png" 
               alt="carrito_compra" style="width:30px; height:30px;"></a>
             </li>
             <li>
-              <?php if ($this->session->userdata('usuario')!='')
+              <?php if ($ci->loginUser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login/logout')."'>Cerrar sesión</a>";?>
             </li>
           </ul>
@@ -50,7 +53,7 @@
     </nav>
 
 <!-- Cuerpo modificable -->
-<?php $view ?>
+<?= $cuerpo ?>
 
 <!-- ENDCUERPO -->
 
