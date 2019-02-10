@@ -12,43 +12,33 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-       //$this->load->view('header');
-       //$usuarios=$this->loginUser->getUsuarios();
-
-        if($_POST){
-            
-        //foreach($usuarios as $usuario){
-            if($this->loginUser->login($_POST['username'],$_POST['password'])!=''){
-                $this->session->set_userdata('usuario',$this->loginUser->login($_POST['username'],$_POST['password']));
-                //$_SESSION['usuario']=$usuario;
-                //header('Location:'.base_url());
+        
+        if($this->input->post()){
+        
+            if($this->loginUser->login($this->input->post('username'),$this->input->post('password'))){
+                
                 redirect('destacados');
             }
             else{
-                //$this->load->view('plantilla',['view'=>$this->load->view('failed')]);
                 
-                $this->load->view('plantilla',['view'=>$this->load->view('failed')]);
+                $this->load->view('plantilla',[
+                    'cuerpo'=>$this->load->view('failed', [], true)]);
             }
-        //}
+        
 		
         }
 
         else{
-            $this->load->view('plantilla',['view'=>$this->load->view('login')]);
+            $this->load->view('plantilla',[
+                'cuerpo'=>$this->load->view('login', [], true)]);
         }
         
-        //$this->load->view('footer');
     }
     
     public function logOut(){
 
-        $this->session->sess_destroy();
+        $this->loginUser->logOut();
         redirect('login');
-    }
-
-    public function showError(){
-
-        $this->load->view('plantilla',['view'=>$this->load->view('failed')]);
     }
 
 	
