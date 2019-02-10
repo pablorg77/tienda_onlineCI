@@ -1,4 +1,5 @@
                 <!-- FORMULARIO REGISTRO -->
+                <?= form_open('registro/getForm'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -11,22 +12,25 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="user" name="user" type="text" placeholder="Usuario" class="form-control"
-                                value="<?=VP('user')?>">
+                                value="<?=set_value('user')?>">
                             </div>
+                            <?= form_error('user');?>
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="pass" name="pass" type="password" placeholder="Contraseña" class="form-control">
                             </div>
+                            <?= form_error('pass');?>
                         </div>
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="correo" name="correo" type="text" placeholder="Correo electrónico" class="form-control"
-                                value="<?=VP('correo')?>">
+                                value="<?=set_value('correo')?>">
                             </div>
+                            <?= form_error('correo');?>
                         </div>
 
                         <div class="form-group">
@@ -35,6 +39,7 @@
                                 <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
                                 value="<?=VP('nombre')?>">
                             </div>
+                            <?= form_error('nombre');?>
                         </div>
 
                         <div class="form-group">
@@ -43,6 +48,7 @@
                                 <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" class="form-control"
                                 value="<?=VP('apellidos')?>">
                             </div>
+                            <?= form_error('apellidos');?>
                         </div>
 
                         <div class="form-group">
@@ -51,6 +57,7 @@
                                 <input id="dni" name="dni" type="text" placeholder="DNI/NIF" class="form-control"
                                 value="<?=VP('dni')?>">
                             </div>
+                            <?= form_error('dni');?>
                         </div>
 
                         <div class="form-group">
@@ -59,6 +66,7 @@
                                 <input id="direccion" name="direccion" type="text" placeholder="Dirección" class="form-control"
                                 value="<?=VP('direccion')?>">
                             </div>
+                            <?= form_error('direccion');?>
                         </div>
 
                         <div class="form-group">
@@ -67,6 +75,7 @@
                                 <input id="codpostal" name="codpostal" type="text" placeholder="Código Postal" class="form-control"
                                 value="<?=VP('codpostal')?>">
                             </div>
+                            <?= form_error('codpostal');?>
                         </div>
 
                         <div class="form-group">
@@ -79,8 +88,7 @@
                             </select>
                             </div>
                         </div>
-
-
+                        
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary btn-lg">Submit</button>

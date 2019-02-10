@@ -7,52 +7,52 @@ class Registro extends CI_Controller {
         parent::__construct();
         $this->load->model('register');
         $this->load->helper('form');
-        include 'filtradoRegistro.php';
+        $this->load->library('form_validation');
         include 'helper.php';
     }
+
+    public function getForm(){
     
-    public function index()
-	{
-        //$this->load->view('header');
         $provincias=$this->register->getProvincias();
-        $vistaRegistro=$this->load->view('registro',['provincias'=>$provincias]);
-
-        if($_POST){
-    
-            $datos=[
-                'usuario'=>$_POST['user'],
-                'pass'=>$_POST['pass'],
-                'correo'=>$_POST['correo'],
-                'nombre'=>$_POST['nombre'],
-                'apellidos'=>$_POST['apellidos'],
-                'dni'=>$_POST['dni'],
-                'direccion'=>$_POST['direccion'],
-                'codpostal'=>$_POST['codpostal'],
-                'provincia'=>$_POST['provincia']
-            ];
-
-            $errores=filtradoRegistro($datos);
-            if ($errores) {
-                foreach ($errores as $error) {
-                    if ($error != '')   //Podría colocar cada error en un div en rojo debajo de cada campo.
-                        echo "<p style='color:red'>" . $error ."</p>";
-                }
-                $this->load->view('plantilla',['view'=>$vistaRegistro]);
-            }
-            else{
-                $this->register->setRegistro($datos);
-                $this->load->view('plantilla',['view'=>$this->load->view('correct')]);
-            }
-           
-        }
-
-		else{
+        //$vistaRegistro=$this->load->view('registro',['provincias'=>$provincias],true);
         
-            $this->load->view('plantilla',['view'=>$vistaRegistro]);
-        
-        }
-        //$this->load->view('footer');
+         $this->form_validation->set_rules('user', 'User', 'required');
+         $this->form_validation->set_rules('pass', 'Pass', 'trim|required|min_length[8]');
+         $this->form_validation->set_rules('correo', 'Correo', 'trim|required|valid_email');
+         $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+         $this->form_validation->set_rules('apellidos', 'Apellidos', 'required');
+         $this->form_validation->set_rules('dni', 'DNI', 'trim|required|exact_length[9]|callback_validadni');
+         $this->form_validation->set_rules('direccion', 'Direccion', 'required');
+         $this->form_validation->set_rules('codpostal', 'Codpostal', 'trim|required|exact_length[5]');
+
+         if ($this->form_validation->run() == FALSE)
+             {
+                     $this->load->view('plantilla',[
+                         'cuerpo'=>$this->load->view('registro',['provincias'=>$provincias],true)
+                         ]);
+             }
+             else
+             {
+                     $this->load->view('plantilla',[
+                        'cuerpo'=>$this->load->view('correct')]);
+                    $this->register->setRegistro($this->input->post());
+             }
+         
     }
+    
+    public function validaDNI($dni){
+
+        $letra = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+        $num=intval(substr($dni,0,-1)) % 23;
+        $letraDNI=$letra[$num];
+    
+        if (substr($dni,-1)===$letraDNI)
+            return true;
+        else {   
+            $this->form_validation->set_message('dni', 'El dni no es correcto');
+            return false;
+        }
+      }
     
     
 	

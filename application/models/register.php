@@ -3,9 +3,11 @@
 class register extends CI_Model{
 
     function setRegistro($data){
+
+        $newPass=password_hash($data['pass'], PASSWORD_DEFAULT);
         
         $this->db->query('INSERT INTO usuarios (usuario,pass,correo,nombre,apellidos,dni,direccion,codpostal,provincia) 
-        VALUES ("'.$data["usuario"].'","'.$data["pass"].'","'.$data["correo"].'","'.$data["nombre"].'","'.$data["apellidos"].
+        VALUES ("'.$data["user"].'","'.$newPass.'","'.$data["correo"].'","'.$data["nombre"].'","'.$data["apellidos"].
         '","'.$data["dni"].'","'.$data["direccion"].'","'.$data["codpostal"].'","'.$data["provincia"].'")');
     }
 
