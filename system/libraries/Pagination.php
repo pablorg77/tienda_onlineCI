@@ -151,14 +151,14 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $full_tag_open = '';
+	protected $full_tag_open = '<li class="page-item">';
 
 	/**
 	 * Full tag close
 	 *
 	 * @var	string
 	 */
-	protected $full_tag_close = '';
+	protected $full_tag_close = '</li>';
 
 	/**
 	 * First tag open

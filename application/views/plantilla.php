@@ -40,7 +40,7 @@
               <a class="nav-link" href="<?=site_url('registro/getForm');?>">Registrarse</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><img src="<?=base_url();?>/assets/images/carrito.png" 
+              <a class="nav-link" href="<?=site_url('mycart')?>"><img src="<?=base_url();?>/assets/images/carrito.png" 
               alt="carrito_compra" style="width:30px; height:30px;"></a>
             </li>
             <li>

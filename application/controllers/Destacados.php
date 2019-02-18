@@ -3,36 +3,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Destacados extends CI_Controller {
 
-	public function index()
+	/**
+	 * 
+	 * 
+	 */
+	public function index($offset=0)
 	{
-		$this->getPag();
-		$this->load->model('indexModel');
-		$categorias=$this->indexModel->getCategorias();
-		$destacados=$this->chooseCategoria();
-		$principal=$this->load->view('principal',['destacados'=>$destacados,'cats'=>$categorias],true);
-		$this->load->view('plantilla',['cuerpo'=>$principal]);
-		
-	}
-
-	private function chooseCategoria(){
-
-		if(isset($_GET['categ']))
-		$categoria=$_GET['categ'];
-		else
-			$categoria= 1; //Muestro los antivirus por defecto;
-
-		return $this->indexModel->getDestacados($categoria);
-	}
-
-	private function getPag(){
-
+	
+		$this->load->model('Articulos');
+		$destacados=$this->Articulos->getDestacados();
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url();
-		$config['total_rows'] = 10;
+		$config['base_url'] = site_url('Destacados/index');
+		$config['total_rows'] = count($destacados);
 		$config['per_page'] = 3;
 
 		$this->pagination->initialize($config);
+
+		$articulos=$this->Articulos->getArticulos($config['per_page'],$offset);
+
+		//$principal=$this->load->view('principal',['articulos'=>$articulos],true);
+		$this->load->view('plantilla',
+		['cuerpo'=>$this->load->view('principal',['articulos'=>$articulos],true)]);
+		
+	}
+
+	public function getArticulos($categoria,$offset=0){
+		
+		$this->load->model('Articulos');
+		$this->load->library('pagination');
+		$categorias=$this->Articulos->getCategorias();
+
+		$noDestacados=$this->Articulos->getNoDestacados($categoria);
+
+		$config['base_url'] = site_url('Destacados/getArticulos')."/".$categoria;
+		$config['total_rows'] = count($noDestacados);
+		$config['uri_segment']= 4;
+		$config['per_page'] = 3;
+	
+		$this->pagination->initialize($config);
+
+		$articulos=$this->Articulos->getMoreArticulos($config['per_page'],$offset,$categoria);
+
+		$this->load->view('plantilla',[
+			'cuerpo'=>$this->load->view('masarticulos',['articulos'=>$articulos,'cats'=>$categorias],true)]);
 	}
 
 	

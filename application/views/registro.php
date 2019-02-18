@@ -37,7 +37,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
-                                value="<?=VP('nombre')?>">
+                                value="<?=set_value('nombre')?>">
                             </div>
                             <?= form_error('nombre');?>
                         </div>
@@ -46,7 +46,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" class="form-control"
-                                value="<?=VP('apellidos')?>">
+                                value="<?=set_value('apellidos')?>">
                             </div>
                             <?= form_error('apellidos');?>
                         </div>
@@ -55,7 +55,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="dni" name="dni" type="text" placeholder="DNI/NIF" class="form-control"
-                                value="<?=VP('dni')?>">
+                                value="<?=set_value('dni')?>">
                             </div>
                             <?= form_error('dni');?>
                         </div>
@@ -64,7 +64,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="direccion" name="direccion" type="text" placeholder="Dirección" class="form-control"
-                                value="<?=VP('direccion')?>">
+                                value="<?=set_value('direccion')?>">
                             </div>
                             <?= form_error('direccion');?>
                         </div>
@@ -73,7 +73,7 @@
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">
                                 <input id="codpostal" name="codpostal" type="text" placeholder="Código Postal" class="form-control"
-                                value="<?=VP('codpostal')?>">
+                                value="<?=set_value('codpostal')?>">
                             </div>
                             <?= form_error('codpostal');?>
                         </div>
@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">Provincia: 
-                            <select name="provincia">
+                            <select name="provincia" value="<?=set_value('provincia')?>">
                             <?php foreach ($provincias as $prov):?>
                                     <option value='<?=$prov['provincia']?>'><?=$prov['provincia']?></option>";
                             <?php endforeach;?>

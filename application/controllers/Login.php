@@ -5,9 +5,9 @@ class Login extends CI_Controller {
 
     function __construct(){
         parent::__construct();
-        $this->load->model('loginUser');
+        $this->load->model('Loginuser');
         $this->load->library('session');
-        include 'helper.php';
+        $this->load->helper('form');
     }
 
 	public function index()
@@ -15,7 +15,7 @@ class Login extends CI_Controller {
         
         if($this->input->post()){
         
-            if($this->loginUser->login($this->input->post('username'),$this->input->post('password'))){
+            if($this->Loginuser->login($this->input->post('username'),$this->input->post('password'))){
                 
                 redirect('destacados');
             }
@@ -37,7 +37,7 @@ class Login extends CI_Controller {
     
     public function logOut(){
 
-        $this->loginUser->logOut();
+        $this->Loginuser->logOut();
         redirect('login');
     }
 

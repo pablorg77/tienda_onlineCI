@@ -16,9 +16,9 @@ class Producto extends CI_Controller {
 	public function getProd(){
 
         $id=$_GET['prod'];
-        $this->load->model('item');
+        $this->load->model('Item');
 
-        return $this->item->getProducto($id);
+        return $this->Item->getProducto($id);
 
     }
 

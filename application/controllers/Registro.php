@@ -5,15 +5,14 @@ class Registro extends CI_Controller {
 
     function __construct(){
         parent::__construct();
-        $this->load->model('register');
+        $this->load->model('Register');
         $this->load->helper('form');
         $this->load->library('form_validation');
-        include 'helper.php';
     }
 
     public function getForm(){
     
-        $provincias=$this->register->getProvincias();
+        $provincias=$this->Register->getProvincias();
         //$vistaRegistro=$this->load->view('registro',['provincias'=>$provincias],true);
         
          $this->form_validation->set_rules('user', 'User', 'required');
@@ -35,7 +34,7 @@ class Registro extends CI_Controller {
              {
                      $this->load->view('plantilla',[
                         'cuerpo'=>$this->load->view('correct')]);
-                    $this->register->setRegistro($this->input->post());
+                    $this->Register->setRegistro($this->input->post());
              }
          
     }
