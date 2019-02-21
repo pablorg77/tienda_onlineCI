@@ -21,7 +21,7 @@ try {
 
     //Recipients
     $mail->setFrom('prgdwes@gmail.com', 'Yo mismo');
-    $mail->addAddress('prgdwes@gmail.com', 'Yopp');     // Add a recipient
+    $mail->addAddress('prgdwes@gmail.com', 'A mi mismo');     // Add a recipient
     
     //Attachments
     //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
@@ -34,7 +34,7 @@ try {
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    redirect('mycart');
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 }

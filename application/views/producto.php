@@ -10,15 +10,7 @@
             <div class="card-body">
               <h4 class="card-title">
                 <p name="name" value="<?=$prod['nombre']?>"><?=$prod['nombre']?></p>
-
-                <?= $desc
-                /*if($prod['descuento']!=null):?>
-                <i><div name="precio"><?=$prod['precio']?> € (IVA incluido)</div></i>
-                <?php endif; 
-                else{?>
-                <i>Ahora<div name="descuento"><?=$prod['descuento']?> € (IVA incluido)</div></i>
-                <del><i>Antes<div name="precio"><?=$prod['precio']?> € (IVA incluido)</div></i></del>
-                <?php }*/?>
+                <?= $desc?>
               </h4>
               <p class="card-text" name="descrip"><?=$prod['descripcion'];?></p>
               Cantidad: <input type="text" name="cant"><br/>

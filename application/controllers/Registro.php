@@ -13,7 +13,7 @@ class Registro extends CI_Controller {
     public function getForm(){
     
         $provincias=$this->Register->getProvincias();
-        //$vistaRegistro=$this->load->view('registro',['provincias'=>$provincias],true);
+        
         
          $this->form_validation->set_rules('user', 'User', 'required');
          $this->form_validation->set_rules('pass', 'Pass', 'trim|required|min_length[8]');
@@ -33,7 +33,7 @@ class Registro extends CI_Controller {
              else
              {
                      $this->load->view('plantilla',[
-                        'cuerpo'=>$this->load->view('correct')]);
+                        'cuerpo'=>$this->load->view('correct',[],true)]);
                     $this->Register->setRegistro($this->input->post());
              }
          

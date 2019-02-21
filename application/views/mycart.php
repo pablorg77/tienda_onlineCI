@@ -29,9 +29,9 @@
                     <td class="right"><strong>Total</strong></td>
                     <td class="right">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
                 </tr>
-
+                
             </table>
-            <a href="<?=site_url('emailme')?>"> Aceptar compra </a>
+            
       </div>
 
     </div>
