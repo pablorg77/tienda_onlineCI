@@ -26,7 +26,7 @@ class Articulos extends CI_Model{
         $query=$this->db
         ->select('*')
         ->from('productos')
-        ->where('("'.$fecha.'" "NOT" BETWEEN fechaInicio AND fechaFin OR destacado=0) AND categorias_idcategoria='.$cat)
+        ->where('(!("'.$fecha.'" BETWEEN fechaInicio AND fechaFin) OR destacado=0) AND categorias_idcategoria='.$cat)
         ->get();
 
         return $query->result_array();
@@ -50,7 +50,7 @@ class Articulos extends CI_Model{
         $query=$this->db
         ->select('*')
         ->from('productos')
-        ->where('("'.$fecha.'" "NOT" BETWEEN fechaInicio AND fechaFin OR destacado=0) AND categorias_idcategoria='.$cat)
+        ->where('(!("'.$fecha.'" BETWEEN fechaInicio AND fechaFin) OR destacado=0) AND categorias_idcategoria='.$cat)
         ->limit($pag,$offset)
         ->get();
 

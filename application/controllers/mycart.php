@@ -8,6 +8,7 @@ class mycart extends CI_Controller {
         $this->load->model('Item');
         $this->load->library('cart');
         $this->load->library('form_validation');
+        
     }
 
 	public function index()
@@ -21,11 +22,18 @@ class mycart extends CI_Controller {
     public function add($id){
 
         $product=$this->Item->getProducto($id);
+
+        if($product[0]['descuento']!=null)
+            $precio=$product[0]['descuento'] + ($product[0]['descuento'] * $product[0]['iva']/100);
+        else
+            $precio=$product[0]['precio'] + ($product[0]['precio'] * $product[0]['iva']/100);
+
         $producto = array(
             'id'      => $id,
-            'cant'     => $this->input->post('cant'),
-            'precio'   => $product[0].precio + ($product[0].precio * $product[0].iva/100),
-            'name'    => $product[0].nombre,
+            'qty'     => $this->input->post('cant'),
+            'price'   => $precio,
+            'name'    => $product[0]['nombre'],
+            'img'     => $product[0]['imagen']
     );
     
         $this->cart->insert($producto);
@@ -33,12 +41,38 @@ class mycart extends CI_Controller {
         redirect('mycart');
     }
 
-    public function update(){
-
-        $this->cart->update();
-        $this->load->view('plantilla',[
-            'cuerpo'=>$this->load->view('mycart', [], true)]);
+    public function delete($rowid){
+	
+		$data = array(
+            'rowid'   => $rowid,
+            'qty'     => 0
+        );
+        $this->cart->update($data);
+        redirect('mycart');
     }
-    
+
+    /*public function emailme(){
+
+        $this->email->from('prgdwes@gmail.com', 'Kurgx');
+        $this->email->to('prgdwes@gmail.com');
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.');
+
+        $this->email->send();
+
+        redirect('Destacados');
+
+        if($this->email->send()){
+
+            redirect('Destacados');
+        }
+
+        else{
+            show_error($this->email->print_debugger());
+        }
+
+       
+    }*/
 	
 }

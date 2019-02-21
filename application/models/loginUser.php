@@ -3,7 +3,7 @@
 class Loginuser extends CI_Model{
 
     function login($user, $pass){
-        
+        /*
         $passwords=$this->getPasswords();
 
         foreach($passwords['pass'] as $password){
@@ -11,19 +11,28 @@ class Loginuser extends CI_Model{
                 $VerifiedPass=$pass;
             else
                 return false;
-        }
+        }*/
 
         $query=$this->db
             ->select('*')
             ->from('usuarios')
-            ->where('usuario="'.$user.'" AND pass="'.$VerifiedPass.'"')
+            ->where('usuario',$user)
+            //->where('pass',$VerifiedPass)
             ->get();
-        if($query->result()!=''){
-            $this->session->set_userdata('isIn',true);
-            $this->session->set_userdata($query->result_array());
-            return true;
+        $user_data=$query->row();
+        if ( !$user_data ){
+            return false;
         }
-        else return false;
+
+        // Es correcta la clave
+        if(! password_verify($pass,$user_data->pass)) {
+            return false; //Si no coincide la clave;
+        }
+        
+            $this->session->set_userdata('isIn',true);
+            $this->session->set_userdata($user_data);
+            return true;
+
     }
 
     function isLogged(){

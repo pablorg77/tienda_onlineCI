@@ -1,53 +1,37 @@
-<?php //echo form_open('mycart/update'); ?>
+<div class="container">
 
-<table cellpadding="6" cellspacing="1" style="width:100%" border="0">
+      <div class="row">
+        
+            <table cellpadding="6" cellspacing="1" style="width:80%" border="1">
 
-<tr>
-        <th>Cantidad</th>
-        <th>Descripción</th>
-        <th style="text-align:right">Precio</th>
-        <th style="text-align:right">Sub-Total</th>
-</tr>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+                </tr>
 
-<?php $i = 1; ?>
+                <?php foreach ($this->cart->contents() as $items): ?>
 
-<?php foreach ($this->cart->contents() as $items): ?>
+                <tr>
+                    <td><img class="card-img-top" id="imagen" src=<?=base_url('assets/images/'.$items['img'])?> style="width:40px;height:40px">
+                    <?= $items['name'];?></td>
+                    <td><?= $items['price'];?></td>
+                    <td><?= $items['qty'];?></td>
+                    <td><a href=<?=site_url('mycart/delete/'.$items['rowid'])?>>Borrar</a></td>
+                </tr>
 
-        <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+                <?php endforeach; ?>
 
-        <tr>
-                <td><?php echo form_input(array('name' => $i.'[cant]', 'value' => $items['cant'], 'maxlength' => '3', 'size' => '5')); ?></td>
-                <td>
-                        <?php echo $items['name']; ?>
 
-                        <?php if ($this->cart->has_options($items['rowid']) == TRUE): ?>
+                <tr>
+                    <td colspan="2"> </td>
+                    <td class="right"><strong>Total</strong></td>
+                    <td class="right">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
+                </tr>
 
-                                <p>
-                                        <?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
+            </table>
+            <a href="<?=site_url('emailme')?>"> Aceptar compra </a>
+      </div>
 
-                                                <strong><?php echo $option_name; ?>:</strong> <?php echo $option_value; ?><br />
-
-                                        <?php endforeach; ?>
-                                </p>
-
-                        <?php endif; ?>
-
-                </td>
-                <td style="text-align:right"><?php echo $this->cart->format_number($items['precio']); ?></td>
-                <td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
-        </tr>
-
-<?php $i++; ?>
-
-<?php endforeach; ?>
-
-<tr>
-        <td colspan="2"> </td>
-        <td class="right"><strong>Total</strong></td>
-        <td class="right">$<?php echo $this->cart->format_number($this->cart->total()); ?></td>
-</tr>
-
-</table>
-
-<p><?php //echo form_submit('mycart/update', 'Update your Cart'); ?></p>
-
+    </div>
