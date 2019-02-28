@@ -34,13 +34,37 @@ class Loginuser extends CI_Model{
 
     }
 
-    function getUsername(){
+    function getDataFromLoggedUser(){
 
-        //print_r($this->session->userdata('user'));
+        $query=$this->db
+        ->select('*')
+        ->from('usuarios')
+        ->where('idusuario',$this->session->userdata('user')->idusuario)
+        ->get();
+            return $query->result_array();
+    }
+
+    function getUsername(){
 
         echo "<div style='float:right;color:white'>Bienvenido: ". $this->session->userdata('user')->nombre ." ".
         $this->session->userdata('user')->apellidos."</div>";
         
+    }
+
+    function modifyData($user_data){
+
+        $user_data['pass']=password_hash($user_data['pass'], PASSWORD_DEFAULT);
+
+        $this->db
+        ->update('usuarios', $user_data, 'idusuario='.$this->session->userdata('user')->idusuario);
+        
+    }
+
+    function deleteUser(){
+
+        $this->db->where('idusuario', $this->session->userdata('user')->idusuario);
+        $this->db->delete('usuarios');
+
     }
 
     function logOut(){
@@ -48,6 +72,16 @@ class Loginuser extends CI_Model{
         $this->session->set_userdata('isIn',false);
         $this->session->unset_userdata('usuario');
 
+    }
+
+    function getProvincias(){
+
+        $query=$this->db
+        ->select('*')
+        ->from('provincias_es')
+        ->get();
+
+        return $query->result_array();
     }
     
 

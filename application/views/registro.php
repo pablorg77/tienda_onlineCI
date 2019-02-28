@@ -1,5 +1,5 @@
                 <!-- FORMULARIO REGISTRO -->
-                <?= form_open('registro/getForm'); ?>
+        <?= form_open('registro/getForm'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -7,10 +7,9 @@
                 <form class="form-horizontal" method="post">
                     <fieldset>
                         <legend class="text-center header">Indique sus datos de contacto</legend>
-
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-8">Usuario:
                                 <input id="user" name="user" type="text" placeholder="Usuario" class="form-control"
                                 value="<?=set_value('user')?>">
                             </div>
@@ -18,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-8">Contraseña:
                                 <input id="pass" name="pass" type="password" placeholder="Contraseña" class="form-control">
                             </div>
                             <?= form_error('pass');?>
@@ -26,8 +25,8 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="correo" name="correo" type="text" placeholder="Correo electrónico" class="form-control"
+                            <div class="col-md-8">Correo:
+                                <input id="correo" name="correo" type="text" placeholder="example@serv.com" class="form-control"
                                 value="<?=set_value('correo')?>">
                             </div>
                             <?= form_error('correo');?>
@@ -35,7 +34,7 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-8">Nombre:
                                 <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control"
                                 value="<?=set_value('nombre')?>">
                             </div>
@@ -44,7 +43,7 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-8">Apellidos:
                                 <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" class="form-control"
                                 value="<?=set_value('apellidos')?>">
                             </div>
@@ -53,7 +52,7 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
-                            <div class="col-md-8">
+                            <div class="col-md-8">DNI/NIF:
                                 <input id="dni" name="dni" type="text" placeholder="DNI/NIF" class="form-control"
                                 value="<?=set_value('dni')?>">
                             </div>
@@ -62,8 +61,8 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="direccion" name="direccion" type="text" placeholder="Dirección" class="form-control"
+                            <div class="col-md-8">Dirección:
+                                <input id="direccion" name="direccion" type="text" placeholder="Calle/Plaza... Nº...Puerta" class="form-control"
                                 value="<?=set_value('direccion')?>">
                             </div>
                             <?= form_error('direccion');?>
@@ -71,8 +70,8 @@
 
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
-                            <div class="col-md-8">
-                                <input id="codpostal" name="codpostal" type="text" placeholder="Código Postal" class="form-control"
+                            <div class="col-md-8">Cod. Postal:
+                                <input id="codpostal" name="codpostal" type="text" placeholder="00000-99999" class="form-control"
                                 value="<?=set_value('codpostal')?>">
                             </div>
                             <?= form_error('codpostal');?>

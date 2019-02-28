@@ -22,7 +22,6 @@ class Destacados extends CI_Controller {
 
 		$articulos=$this->Articulos->getArticulos($config['per_page'],$offset);
 
-		//print_r($this->session->userdata());
 		$this->load->view('plantilla',
 		['cuerpo'=>$this->load->view('principal',['articulos'=>$articulos],true)]);
 		

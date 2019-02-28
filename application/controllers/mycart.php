@@ -8,12 +8,18 @@ class mycart extends CI_Controller {
         $this->load->model('Item');
         $this->load->library('cart');
         $this->load->library('form_validation');
-        
+        $this->load->library('pagination');
     }
 
 	public function index()
 	{
        
+        /*$config['base_url'] = site_url('mycart/index');
+		$config['total_rows'] = count($this->cart->contents());
+		$config['per_page'] = 10;
+
+		$this->pagination->initialize($config);*/
+
         $this->load->view('plantilla',[
             'cuerpo'=>$this->load->view('mycart', [], true)]);
         
@@ -51,28 +57,7 @@ class mycart extends CI_Controller {
         redirect('mycart');
     }
 
-    /*public function emailme(){
 
-        $this->email->from('prgdwes@gmail.com', 'Kurgx');
-        $this->email->to('prgdwes@gmail.com');
-
-        $this->email->subject('Email Test');
-        $this->email->message('Testing the email class.');
-
-        $this->email->send();
-
-        redirect('Destacados');
-
-        if($this->email->send()){
-
-            redirect('Destacados');
-        }
-
-        else{
-            show_error($this->email->print_debugger());
-        }
-
-       
-    }*/
+    
 	
 }

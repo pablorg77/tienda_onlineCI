@@ -16,14 +16,14 @@
 <body>
 <?php 
   $ci=get_instance();
-  $ci->load->model('loginUser');
+  $ci->load->model('Loginuser');
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="<?=base_url();?>">Tienda online</a>
-        <?php if ($ci->loginUser->isLogged())
-              $ci->loginUser->getUsername();?>
+        <?php if ($ci->Loginuser->isLogged())
+              $ci->Loginuser->getUsername();?>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +33,7 @@
               <a class="nav-link" href="<?=base_url();?>">Página Principal</a>
             </li>
             <li class="nav-item">
-              <?php if (!$ci->loginUser->isLogged())
+              <?php if (!$ci->Loginuser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login')."'>Iniciar sesión</a>";?>
             </li>
             <li class="nav-item">
@@ -44,7 +44,11 @@
               alt="carrito_compra" style="width:30px; height:30px;"></a>
             </li>
             <li>
-              <?php if ($ci->loginUser->isLogged())
+              <?php if ($ci->Loginuser->isLogged())
+                  echo "<a class='nav-link' href='".site_url('login/accOptions')."'>Configuración</a>";?>
+            </li>
+            <li>
+              <?php if ($ci->Loginuser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login/logout')."'>Cerrar sesión</a>";?>
             </li>
           </ul>
