@@ -8,6 +8,7 @@
       </h3>
 
       <div class="row">
+      
 
       <?php foreach($articulos as $art): ?>
         <div class="col-lg-4 col-sm-6 portfolio-item">

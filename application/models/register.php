@@ -1,7 +1,13 @@
 <?php
 
 class Register extends CI_Model{
-
+    
+    
+    /**
+     * Registra un usuario en la bse de datos encriptando antes su contraseña.
+     * 
+     * @param array $data
+     */
     function setRegistro($data){
 
         $newPass=password_hash($data['pass'], PASSWORD_DEFAULT);
@@ -11,6 +17,11 @@ class Register extends CI_Model{
         '","'.$data["dni"].'","'.$data["direccion"].'","'.$data["codpostal"].'","'.$data["provincia"].'")');
     }
 
+    /**
+     * Devuelve un array de provincias de España.
+     * 
+     * @return array
+     */
     function getProvincias(){
 
         $query=$this->db

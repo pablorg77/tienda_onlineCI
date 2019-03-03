@@ -14,8 +14,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                             <div class="col-md-8">Usuario:
-                                <input id="usuario" name="usuario" type="text" placeholder="<?=$data[0]['usuario']?>" class="form-control"
-                                value="<?=set_value('usuario')?>">
+                                <input id="usuario" name="usuario" type="text" class="form-control"
+                                value="<?=$data->usuario?>">
                             </div>
                             <?= form_error('user');?>
                         </div>
@@ -30,8 +30,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-md-8">Correo:
-                                <input id="correo" name="correo" type="text" placeholder="<?=$data[0]['correo']?>" class="form-control"
-                                value="<?=set_value('correo')?>">
+                                <input id="correo" name="correo" type="text" class="form-control"
+                                value="<?=$data->correo?>">
                             </div>
                             <?= form_error('correo');?>
                         </div>
@@ -39,8 +39,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">Nombre:
-                                <input id="nombre" name="nombre" type="text" placeholder="<?=$data[0]['nombre']?>" class="form-control"
-                                value="<?=set_value('nombre')?>">
+                                <input id="nombre" name="nombre" type="text" class="form-control"
+                                value="<?=$data->nombre?>">
                             </div>
                             <?= form_error('nombre');?>
                         </div>
@@ -48,8 +48,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">Apellidos:
-                                <input id="apellidos" name="apellidos" type="text" placeholder="<?=$data[0]['apellidos']?>" class="form-control"
-                                value="<?=set_value('apellidos')?>">
+                                <input id="apellidos" name="apellidos" type="text" class="form-control"
+                                value="<?=$data->apellidos?>">
                             </div>
                             <?= form_error('apellidos');?>
                         </div>
@@ -57,8 +57,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">DNI/NIF:
-                                <input id="dni" name="dni" type="text" placeholder="<?=$data[0]['dni']?>" class="form-control"
-                                value="<?=set_value('dni')?>">
+                                <input id="dni" name="dni" type="text" class="form-control"
+                                value="<?=$data->dni?>">
                             </div>
                             <?= form_error('dni');?>
                         </div>
@@ -66,8 +66,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">Dirección:
-                                <input id="direccion" name="direccion" type="text" placeholder="<?=$data[0]['direccion']?>" class="form-control"
-                                value="<?=set_value('direccion')?>">
+                                <input id="direccion" name="direccion" type="text" class="form-control"
+                                value="<?=$data->direccion?>">
                             </div>
                             <?= form_error('direccion');?>
                         </div>
@@ -75,8 +75,8 @@
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-square bigicon"></i></span>
                             <div class="col-md-8">Cod. Postal:
-                                <input id="codpostal" name="codpostal" type="text" placeholder="<?=$data[0]['codpostal']?>" class="form-control"
-                                value="<?=set_value('codpostal')?>">
+                                <input id="codpostal" name="codpostal" type="text" class="form-control"
+                                value="<?=$data->codpostal?>">
                             </div>
                             <?= form_error('codpostal');?>
                         </div>

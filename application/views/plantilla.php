@@ -51,6 +51,17 @@
               <?php if ($ci->Loginuser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login/logout')."'>Cerrar sesión</a>";?>
             </li>
+            <li class="nav-item">
+              <?php if (!$ci->Loginuser->isLogged())
+                  echo "<a class='nav-link' href='".site_url('Login/changePass')."'>Restablecer contraseña</a>";?>
+            </li>
+            <li>
+              <?php if ($ci->Loginuser->isLogged()):
+                $admin=$ci->Loginuser->getDataFromLoggedUser();
+                if($admin->idusuario=='1')
+                  echo "<a class='nav-link' href='".site_url('groceryCRUD/showProducts')."'>CRUD Admin.</a>";
+              endif;?>
+            </li>
           </ul>
         </div>
       </div>
@@ -59,13 +70,15 @@
 <!-- Cuerpo modificable -->
 <?= $cuerpo ?>
 
-<!-- ENDCUERPO -->
+
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
     <p class="m-0 text-center text-white">Copyright &copy; Tienda online 2019</p>
+    <p class="m-0 text-right text-white"><a href="<?=base_url()?>Doc/tree.html">Documentación</a></p>
     </div>
+    
 </footer>
 
 <!-- Bootstrap core JavaScript -->

@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Destacados extends CI_Controller {
 
 	/**
-	 * 
-	 * 
+	 * Se encarga simplemente de mostrar los articulos destacados en primera página, nada mas entrar a la aplicación,
+	 * con su paginación correspondiente. 
 	 */
 	public function index($offset=0)
 	{
@@ -26,6 +26,11 @@ class Destacados extends CI_Controller {
 		['cuerpo'=>$this->load->view('principal',['articulos'=>$articulos],true)]);
 		
 	}
+
+	/**
+	 * Aqui muestro los artículos que no son destacados o no están en temporada, con su paginación correspondiente.
+	 * 
+	 */
 
 	public function getArticulos($categoria,$offset=0){
 		

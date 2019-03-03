@@ -8,6 +8,10 @@ class Producto extends CI_Controller {
         $this->load->model('Item');
     }
 
+    /**
+     * Aquí se reocogen las acciones de las demás funciones y mostraría el producto en particular.
+     */
+
 	public function index()
 	{
         $product=$this->calculate();
@@ -16,7 +20,11 @@ class Producto extends CI_Controller {
         $this->load->view('plantilla',['cuerpo'=>
         $this->load->view('producto',['product'=>$product,'desc'=>$desc],true)]);
 		
-	}
+    }
+    
+    /**
+     * Devuelve un producto según el que esté registrado en la uri.
+     */
 
 	public function getProd(){
 
@@ -25,6 +33,10 @@ class Producto extends CI_Controller {
         return $this->Item->getProducto($id);
 
     }
+
+    /**
+     * Se encarga simplemente de averiguar si el producto tiene descuento o no, y de calcular el precio total con el IVA incluido.
+     */
 
     public function calculate(){
 
@@ -40,6 +52,10 @@ class Producto extends CI_Controller {
         
         
     }
+
+    /**
+     * Simplemente mostraría un "antes y ahora" de los precios actualizados si tiene descuento o no.
+     */
 
     public function isDiscounted(){
 

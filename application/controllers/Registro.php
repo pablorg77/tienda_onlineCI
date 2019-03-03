@@ -10,6 +10,11 @@ class Registro extends CI_Controller {
         $this->load->library('form_validation');
     }
 
+    /**
+     * Mostraría un formulario de registro con validaciones por cada campo, en donde si no hay problemas, inserta el nuevo
+     * usuario en la base de datos.
+     */
+
     public function getForm(){
     
         $provincias=$this->Register->getProvincias();
@@ -38,6 +43,11 @@ class Registro extends CI_Controller {
              }
          
     }
+
+    /**
+     * Función auxiliar que permite verificar la integridad del DNI que se introduce en el formulario, donde se verifica que
+     * la letra introducida es correcta o no.
+     */
     
     public function validaDNI($dni){
 
