@@ -2,38 +2,36 @@
 
       <div class="row">
         
-            <table cellpadding="6" cellspacing="1" style="width:90%" border="1">
+            <table cellpadding="6" cellspacing="1" style="width:90%" border="1" >
 
                 <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Direccion de envío</th>
+                    <th>Fecha de creación</th>
+                    <th>Total</th>
                     <th>Acción</th>
                 </tr>
 
-                <?php foreach ($this->cart->contents() as $items): ?>
+                <?php foreach($orders as $order): ?>
+
+                    <?php 
+                        if($order['estado']=='P')
+                            $estado='Pendiente de envío';
+                        if($order['estado']=='E')
+                            $estado='En envío';
+                        if($order['estado']=='T')
+                            $estado='Transacción completa';
+                    ?>
                 
                     <tr>
-                        <td><img class="card-img-top" id="imagen" src=<?=base_url('assets/images/'.$items['img'])?> style="width:40px;height:40px">
-                        <?= $items['name'];?></td>
-                        <td><?= $items['price'];?></td>
-                        <td><?= $items['qty'];?></td>
-                        <td><a href=<?=site_url('mycart/delete/'.$items['rowid'])?>>Borrar</a></td>
-                    </tr>           
-                <?php endforeach; ?>     
-            
-                <tr>
-                    <td colspan="0"> </td>
-                    <td class="right"><strong>Total</strong></td>
-                    <td class="right">€ <?php echo $this->cart->format_number($this->cart->total()); ?></td>
-                    <a href="<?=site_url('TransformToPDF')?>">Convertir a PDF</a> | 
-                    <a href="<?=site_url('mycart/deleteAll')?>">Borrar</a></td>
-                    
-                    
-                </tr>
-                
-            </table>
-            
+                        <td><?=$estado?></td>                
+                        <td><?=$order['direccion']?></td>
+                        <td><?=$order['fechaCreacion']?></td>
+                        <td><?=$order['total']?></td>
+                        <td><a href="<?=site_url('TransformToPDF/orderToPDF')?>">Convertir a PDF</a> | 
+                        <a href="<?=site_url('')?>">Borrar</a></td>
+                    </tr>  
+                <?php endforeach;?>  
+            </table>    
       </div>
-
 </div>

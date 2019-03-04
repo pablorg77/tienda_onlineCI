@@ -172,7 +172,8 @@ class Login extends CI_Controller {
 
         $newPass = $arrPasswords[mt_rand(0, count($arrPasswords) - 1)];
 
-        $body="Usted ha solicitado un cambio de contraseña, que será: ".$newPass.". Si quiere cambiarla de nuevo por favor dirijase a ajustes";
+        $body="Usted ha solicitado un cambio de contraseña, que será: ".$newPass.". 
+        Si quiere cambiarla de nuevo por favor dirijase a ajustes";
 
         if(sha1($userData->dni)==$hashCode){
 
@@ -200,9 +201,20 @@ class Login extends CI_Controller {
         }
     }
 
-    public function showPedidos(){
+    /**
+     * Muestra los pedidos del usuario que está en la sesión.
+     * 
+     */
 
-        
+    public function showOrders(){
+
+        $pedidos=$this->Loginuser->getOrders();
+
+        if($pedidos==null)
+            redirect('Destacados');
+
+        $this->load->view('plantilla',[
+            'cuerpo'=>$this->load->view('ordersbyuser',['orders'=>$pedidos],true)]);
     }
 
 	

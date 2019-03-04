@@ -193,6 +193,55 @@ class Loginuser extends CI_Model{
 
         return $query->result_array();
     }
+
+    /**
+     * Devuelve los pedidos del usuario que está en la sesión.
+     * 
+     * @return array
+     */
+
+    function getOrders(){
+
+        $user=$this->getDataFromLoggedUser();
+
+        $query=$this->db
+        ->select('*')
+        ->from('pedidos')
+        ->where('usuarios_idusuario',$user->idusuario)
+        ->get();
+
+        return $query->result_array();
+
+    }
+
+    /**
+     * Devuelve las lineas de pedido referentes al id del pedido que se le pase por parámetro.
+     * 
+     * @return array
+     */
+
+    function getOrderLinesFromOrderId($id){
+
+        $query=$this->db
+        ->select('*')
+        ->from('linea_pedido')
+        ->where('pedidos_idpedido',$id)
+        ->get();
+
+        return $query->result_array();
+
+    }
+
+    function getProductFromOrderLine($id){
+
+        $query=$this->db
+        ->select('*')
+        ->from('productos')
+        ->where('idproducto',$id)
+        ->get();
+
+        return $query->row();
+    }
     
 
 

@@ -37,7 +37,8 @@
                   echo "<a class='nav-link' href='".site_url('login')."'>Iniciar sesión</a>";?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?=site_url('registro/getForm');?>">Registrarse</a>
+            <?php if (! $ci->Loginuser->isLogged())
+              echo "<a class='nav-link' href='".site_url('registro/getForm')."'>Registrarse</a>"?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=site_url('mycart')?>"><img src="<?=base_url();?>/assets/images/carrito.png" 
@@ -47,7 +48,11 @@
               <?php if ($ci->Loginuser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login/accOptions')."'>Configuración</a>";?>
             </li>
-            <li>
+            <li class="nav-item">
+              <?php if ($ci->Loginuser->isLogged())
+                  echo "<a class='nav-link' href='".site_url('Login/showOrders')."'>Pedidos</a>"?>
+            </li>
+            <li class="nav-item">
               <?php if ($ci->Loginuser->isLogged())
                   echo "<a class='nav-link' href='".site_url('login/logout')."'>Cerrar sesión</a>";?>
             </li>
@@ -76,7 +81,9 @@
 <footer class="py-5 bg-dark">
     <div class="container">
     <p class="m-0 text-center text-white">Copyright &copy; Tienda online 2019</p>
+    
     <p class="m-0 text-right text-white"><a href="<?=base_url()?>Doc/tree.html">Documentación</a></p>
+    <p class="m-0 text-right text-white"><a href="https://github.com/pablorg77/tienda_onlineCI.git">¡Sigue mi trabajo!</a></p>
     </div>
     
 </footer>

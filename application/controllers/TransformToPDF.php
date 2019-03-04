@@ -29,5 +29,30 @@ class TransformToPDF extends CI_Controller {
         $mpdf->Output(); // opens in browser
         
     }
+
+    public function orderToPDF($id){
+
+        /*for($i=0;$i<count($pedidos);$i++){
+            $orderLines[]=$this->Loginuser->getOrderLinesFromOrderId($id);
+        }*/
+
+        /*foreach($orderLines as $item){
+            foreach($item as $i){
+                $productos[]=$this->Loginuser->getProductFromOrderLine($i['productos_idproducto']);
+            }
+        }*/
+        /*foreach($orderLines as $item){
+            foreach($item as $i){
+                $data[]=$i;
+            }
+        }*/
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('receipt',[],true);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output(); // opens in browser
+
+        //print_r($pedidos);
+    }
  
 }
