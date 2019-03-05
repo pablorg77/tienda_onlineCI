@@ -78,8 +78,23 @@
 
 
 <!-- Footer -->
+
+<?php 
+  $cii=get_instance();
+  $cii->load->model('MonetaryUnits');
+  $units=$cii->MonetaryUnits->getCurrency();
+?>
 <footer class="py-5 bg-dark">
     <div class="container">
+    <form method="post" action="<?=site_url('Destacados/changeCurrency')?>">
+    <p class="m-0 text-center text-white">Seleccione moneda: <select name="monetaryUnits" onchange="this.form.submit()">
+    <option value=""> --Your currency-- </option>
+    <option value="<?= 1 .'/'.'EUR'?>"> EUR </option>
+    <?php foreach ($units as $key=>$unit):?>
+    <option value='<?=$unit.'/'.$key?>'><?=$key?></option>
+    <?php endforeach;?>
+    </select></p>
+    </form>
     <p class="m-0 text-center text-white">Copyright &copy; Tienda online 2019</p>
     
     <p class="m-0 text-right text-white"><a href="<?=base_url()?>Doc/tree.html">Documentación</a></p>

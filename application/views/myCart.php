@@ -5,7 +5,8 @@
       <?php 
         $ci=get_instance();
         $ci->load->model('Loginuser');
-        $userLogged=$this->Loginuser->getDataFromLoggedUser();
+        if($ci->Loginuser->isLogged())
+            $userLogged=$ci->Loginuser->getDataFromLoggedUser();
         ?>
         
             <table cellpadding="6" cellspacing="1" style="width:90%" border="1">
@@ -18,35 +19,42 @@
                 </tr>
 
                 <?php foreach ($this->cart->contents() as $items): ?>
-                <?php
+                <?php if($ci->Loginuser->isLogged()){
                     if($items['idusuario']==$userLogged->idusuario){?>
 
                     <tr>
                         <td><img class="card-img-top" id="imagen" src=<?=base_url('assets/images/'.$items['img'])?> style="width:40px;height:40px">
                         <?= $items['name'];?></td>
-                        <td><?= $items['price'];?></td>
+                        <td><?= currency_Importe($items['price'])?></td>
                         <td><?= $items['qty'];?></td>
                         <td><a href=<?=site_url('mycart/delete/'.$items['rowid'])?>>Borrar</a></td>
                     </tr>
 
                     <?php 
-                    }else{}
-                    endforeach; 
-                    ?>
+                    }}else{?>
+                    <tr>
+                        <td><img class="card-img-top" id="imagen" src=<?=base_url('assets/images/'.$items['img'])?> style="width:40px;height:40px">
+                        <?= $items['name'];?></td>
+                        <td><?= $items['price']?></td>
+                        <td><?= $items['qty'];?></td>
+                        <td><a href=<?=site_url('mycart/delete/'.$items['rowid'])?>>Borrar</a></td>
+                    </tr>
+
+                    <?php }?>
+                    <?php endforeach; ?>
+                    
 
                 
             
                 <tr>
                     <td colspan="0"> </td>
-                    <?php if(isset($items)):
-                    if($items['idusuario']==$userLogged->idusuario):?>
-                    <td class="right"><strong>Total</strong></td>
-                    <td class="right">€ <?php echo $this->cart->format_number($this->cart->total()); ?></td>
-                    <?php endif;?>
-                    <?php endif;?> 
-                    <td><a href="<?=site_url('mycart/acceptBuy')?>"> Tramitar pedido </a> | 
-                    <a href="<?=site_url('TransformToPDF')?>">Convertir a PDF</a> | 
-                    <a href="<?=site_url('mycart/deleteAll')?>">Borrar todo</a></td>
+
+                        <td class="right"><strong>Total</strong></td>
+                        <td class="right"><?=currency_SimboloMoneda()?> 
+                        <?= currency_Importe($this->cart->format_number($this->cart->total())); ?></td>                    
+                        <td><a href="<?=site_url('mycart/acceptBuy')?>"> Tramitar pedido </a> | 
+                        <a href="<?=site_url('TransformToPDF')?>">Convertir a PDF</a> | 
+                        <a href="<?=site_url('mycart/deleteAll')?>">Borrar todo</a></td>
                     
                     
                 </tr>

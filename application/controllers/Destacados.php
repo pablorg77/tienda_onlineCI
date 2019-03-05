@@ -53,5 +53,17 @@ class Destacados extends CI_Controller {
 			'cuerpo'=>$this->load->view('masarticulos',['articulos'=>$articulos,'cats'=>$categorias],true)]);
 	}
 
+	public function changeCurrency(){
+		
+		$monetary=explode('/',$this->input->post('monetaryUnits'));
+
+		$this->session->set_userdata('currency',$monetary[0]);
+
+		$this->session->set_userdata('type',$monetary[1]);
+
+		redirect('Destacados');
+
+	}
+
 	
 }

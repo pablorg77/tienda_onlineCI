@@ -38,7 +38,7 @@ class Item extends CI_Model{
         $query=$this->db
             ->select('*')
             ->from('pedidos')
-            ->where('usuarios_idusuario='.$id.' AND estado="E"')
+            ->where('usuarios_idusuario='.$id.' AND estado="P"')
             ->get();
                 return $query->row(); 
     }

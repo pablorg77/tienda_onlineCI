@@ -23,7 +23,7 @@
             <div class="card-body">
               <h4 class="card-title">
                 <a href="<?=site_url('producto')?>"><?=$art['nombre'];?></a> : <br/>
-                <i><?=$art['precio'] + ($art['precio'] * $art['iva']/100)?> €</i>
+                <i><?=currency_Importe($art['precio'] + ($art['precio'] * $art['iva']/100))?> <?=currency_SimboloMoneda()?></i>
               </h4>
               <p class="card-text"><?=$art['descripcion'];?></p>
             </div>

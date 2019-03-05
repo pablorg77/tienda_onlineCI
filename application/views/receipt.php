@@ -4,7 +4,8 @@
       <?php 
         $ci=get_instance();
         $ci->load->model('Loginuser');
-        $userLogged=$this->Loginuser->getDataFromLoggedUser();
+        if($ci->Loginuser->isLogged())
+            $userLogged=$ci->Loginuser->getDataFromLoggedUser();
         ?>
         
             <table cellpadding="6" cellspacing="1" style="width:90%" border="1">
@@ -16,37 +17,51 @@
                 </tr>
 
                 <?php foreach ($this->cart->contents() as $items): ?>
-                <?php
+                <?php if($ci->Loginuser->isLogged()){
                     if($items['idusuario']==$userLogged->idusuario){?>
 
-                <tr>
-                    <td><?= $items['name'];?></td>
-                    <td><?= $items['price'];?></td>
-                    <td><?= $items['qty'];?></td>
-                </tr>
-                <?php 
-                }else{}
-                endforeach; 
-                ?>
+                    <tr>
+                        <td><?= $items['name'];?></td>
+                        <td><?= currency_Importe($items['price'])?></td>
+                        <td><?= $items['qty'];?></td>
+                    </tr>
+
+                    <?php 
+                    }}else{?>
+                    <tr>
+                        <td><?= $items['name'];?></td>
+                        <td><?= currency_Importe($items['price'])?></td>
+                        <td><?= $items['qty'];?></td>
+                    </tr>
+
+                    <?php }
+                    endforeach; 
+                    ?>
                 
 
                           
                 <tr>
                     <td colspan="0"> </td>
-                    <?php if(isset($items)):
-                    if($items['idusuario']==$userLogged->idusuario):?>
+                    <?php if($this->Loginuser->isLogged()){
+                    if($items['idusuario']==$userLogged->idusuario){?>
                     <td class="right"><strong>Total</strong></td>
-                    <td class="right">€ <?php echo $this->cart->format_number($this->cart->total()); ?></td>
-                    <?php endif;?>
-                    <?php endif;?>
+                    <td class="right"><?=currency_SimboloMoneda()?> 
+                    <?= currency_Importe($this->cart->format_number($this->cart->total())); ?></td>
+                    <?php }}else{?>
+                    <td class="right"><strong>Total</strong></td>
+                    <td class="right"><?=currency_SimboloMoneda()?> 
+                    <?php }?>
+                    <?= currency_Importe($this->cart->format_number($this->cart->total())); ?></td>
+                                 
                 </tr>
                 
             </table><br/><br/>
+            <?php if($ci->Loginuser->isLogged()):?>
             <p> · Información de contacto: </p>
             <p>- Nombre:<?=$userLogged->nombre?>, <?=$userLogged->apellidos?></p>
             <p>- Correo:<?=$userLogged->correo?></p>
             <p>- DNI:<?=$userLogged->dni?></p>
-
+            <?php endif;?>
 
       </div>
 

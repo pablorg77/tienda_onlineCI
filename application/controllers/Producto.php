@@ -63,11 +63,11 @@ class Producto extends CI_Controller {
 
         if($product[0]['descuento']==null){
 
-            return '<i><div name="precio">'.$product[0]["precio"].'€ (IVA incluido)</div></i>';
+            return '<i><div name="precio">'.round(currency_Importe($product[0]["precio"]),2).' '.currency_SimboloMoneda().' (IVA incluido)</div></i>';
         }
         else{
-            return '<i>Ahora<div name="descuento">'.$product[0]["descuento"].' € (IVA incluido)</div></i>
-            <del><i>Antes<div name="precio">'.$product[0]["precio"].' € (IVA incluido)</div></i></del>';
+            return '<i>Ahora<div name="descuento">'.currency_Importe($product[0]["descuento"]).' '.currency_SimboloMoneda().' (IVA incluido)</div></i>
+            <del><i>Antes<div name="precio">'.currency_Importe($product[0]["precio"]).' '.currency_SimboloMoneda().' (IVA incluido)</div></i></del>';
         }
     }
 

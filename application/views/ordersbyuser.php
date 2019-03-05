@@ -21,6 +21,8 @@
                             $estado='En envío';
                         if($order['estado']=='T')
                             $estado='Transacción completa';
+                        if($order['estado']=='C')
+                        $estado='Cancelada';
                     ?>
                 
                     <tr>

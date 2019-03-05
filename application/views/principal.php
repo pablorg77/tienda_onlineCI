@@ -8,7 +8,6 @@
       </h3>
 
       <div class="row">
-      
 
       <?php foreach($articulos as $art): ?>
         <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -18,7 +17,7 @@
             <div class="card-body">
               <h4 class="card-title">
                 <a href="<?=site_url('producto')?>"><?=$art['nombre'];?></a> : </br>
-                <i><?=$art['precio'] + ($art['precio'] * $art['iva']/100)?> €</i>
+                <i><?=round(currency_Importe($art['precio'] + ($art['precio'] * $art['iva']/100)),2)?> <?=currency_SimboloMoneda()?></i>
               </h4>
               <p class="card-text"><?=$art['descripcion'];?></p>
             </div>
